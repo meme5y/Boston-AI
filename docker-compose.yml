@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    container_name: boston_app
+    restart: unless-stopped
+    ports: ["5000:5000"]
+    env_file: .env
+    volumes:
+      - models_data:/app/Modelos
+      - uploads_data:/app/Uploads
+      - knowledge_data:/app/knowledge
+      - db_data:/app/boston.db
+    networks: [boston_net]
+
+networks:
+  boston_net:
+
+volumes:
+  models_data:
+  uploads_data:
+  knowledge_data:
+  db_data:
